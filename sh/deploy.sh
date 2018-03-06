@@ -1,7 +1,10 @@
 #!/bin/bash
+set -e
 
 mkdir -p /lgc/share/
 mkdir -p /lgc/nifi/
+
+docker pull fbrillon/nifi-rtmdemo
 
 docker run \
 	--detach \
