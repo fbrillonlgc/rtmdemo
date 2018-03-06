@@ -8,6 +8,6 @@ RUN mkdir -p /home/nifi/lgc/rtmdemo/
 WORKDIR /home/nifi/lgc/rtmdemo/
 
 # Copy code
-COPY $SRC/java/rtmdemo/target/*.jar ./java/
-COPY $SRC/sh/runetl.sh ./sh/
-COPY $SRC/nifi/flow.xml.gz ./nifi/
+COPY --chown=nifi:nifi $SRC/java/rtmdemo/target/*.jar ./java/
+COPY --chown=nifi:nifi $SRC/sh/runetl.sh ./sh/
+COPY --chown=nifi:nifi $SRC/nifi/flow.xml.gz ./nifi/

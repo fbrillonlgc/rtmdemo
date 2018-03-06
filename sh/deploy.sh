@@ -1,5 +1,8 @@
 #!/bin/bash
 
+mkdir -p /lgc/share/
+mkdir -p /lgc/nifi/
+
 docker run \
 	--detach \
 	--publish 8080-8081:8080-8081 \
