@@ -1,0 +1,40 @@
+CREATE DATABASE IF NOT EXISTS rtmdemo_db;
+
+DROP PROCEDURE IF EXISTS rtmdemo_db.dbo.CombineCsvsProc;
+CREATE PROCEDURE rtmdemo_db.dbo.CombineCsvsProc(@DateSlice DateTime)
+AS
+BEGIN
+
+//These external parameters will be populated by ADF based on the time slice being executed.
+DECLARE EXTERNAL @DateSlice DateTime = DateTime.Now;
+
+//These are used to align the Year/Month/Day partitioning of the input & output.
+//This technique also allows U-SQL to dynamically generate different output file path & name.
+DECLARE @YearString string = @DateSlice.Year.ToString();
+DECLARE @MonthString string = @DateSlice.Month.ToString().PadLeft(2, '0');
+DECLARE @DayString string = @DateSlice.Day.ToString().PadLeft(2, '0');
+
+DECLARE @indir string = "/data/curated/opendata.rtm.quebec/trip_updates/csv";
+DECLARE @input string = @indir + "/" + @YearString + "/" + @MonthString + "/{*}/{*}.csv";
+DECLARE @outdir string = "/data/combined/opendata.rtm.quebec/trip_updates/csv";
+DECLARE @output string = @outdir + "/" + "opendata.rtm.quebec-trip_updates-" + @YearString + "-" + @MonthString + "-" + @DayString + ".csv" ;
+
+@tripUpdates=
+    EXTRACT
+        [timestamp] long,
+        [datetime] String,
+        [trip_id] String,
+        [start_time] String,
+        [route_id] String,
+        [stop_id] String,
+        [stop_sequence] long,
+        [arrival_delay_secs] long,
+        [departure_delay_secs] long
+    FROM @input
+    USING Extractors.Csv(encoding:Encoding.UTF8, skipFirstNRows:1);
+
+OUTPUT @tripUpdates
+    TO @output
+    USING Outputters.Csv();
+
+END;

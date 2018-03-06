@@ -6,4 +6,4 @@ docker run \
 	--mount type=bind,source=/lgc/share/,target=/lgc/share/,readonly \
 	--mount type=bind,source=/lgc/nifi/,target=/lgc/nifi/ \
 	--name nifi-rtmdemo \
-	lgc/nifi-rtmdemo
+	fbrillon/nifi-rtmdemo
