@@ -14,10 +14,20 @@ DECLARE @YearString string = @DateSlice.Year.ToString();
 DECLARE @MonthString string = @DateSlice.Month.ToString().PadLeft(2, '0');
 DECLARE @DayString string = @DateSlice.Day.ToString().PadLeft(2, '0');
 
-DECLARE @indir string = "/data/curated/opendata.rtm.quebec/trip_updates/csv";
-DECLARE @input string = @indir + "/" + @YearString + "/" + @MonthString + "/{*}/{*}.csv";
-DECLARE @outdir string = "/data/combined/opendata.rtm.quebec/trip_updates/csv";
-DECLARE @output string = @outdir + "/" + "opendata.rtm.quebec-trip_updates-" + @YearString + "-" + @MonthString + "-" + @DayString + ".csv" ;
+DECLARE @datasource string = "opendata.rtm.quebec";
+DECLARE @dataset string = "trip_updates";
+DECLARE @dataformat string = "csv";
+DECLARE @datetimeslash string = @YearString + "/" + @MonthString + "/" + @DayString;
+DECLARE @datetimedash string = @YearString + "-" + @MonthString + "-" + @DayString;
+
+DECLARE @indir  string = "/data/curated/"  + @datasource + "/" + @dataset + "/" + @dataformat + "/" + @datetimeslash;
+DECLARE @outdir string = "/data/combined/" + @datasource + "/" + @dataset + "/" + @dataformat;
+
+DECLARE @infiles string = "{*}." + @dataformat;
+DECLARE @outfile string = @datasource + "_" + @dataset + "_" + @datetimedash + "." + @dataformat;
+
+DECLARE @input string = @indir + "/" + @infiles;
+DECLARE @output string = @outdir + "/" + @outfile;
 
 @tripUpdates=
     EXTRACT
