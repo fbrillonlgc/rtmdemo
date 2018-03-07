@@ -14,4 +14,5 @@ docker run \
 	--detach \
 	--publish 8080-8081:8080-8081 \
 	--name nifi-rtmdemo \
+	--mount source=nifi-rtmdemo-vol,destination=/home/nifi/nifi/ \
 	fbrillon/nifi-rtmdemo
