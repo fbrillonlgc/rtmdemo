@@ -2,6 +2,10 @@ FROM hortonworks/nifi
 
 LABEL maintainer="francois.brillon@larochellegc.com"
 
+# Environment variables
+# - TO DO : find value dynamically from parent image
+ENV NIFI_HOME /opt/nifi/nifi-1.5.0.3.1.0.0-564
+
 # Setup working directory
 USER nifi
 RUN mkdir -p /home/nifi/lgc/rtmdemo/
