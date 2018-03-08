@@ -14,7 +14,7 @@ WORKDIR /home/nifi/lgc/rtmdemo/
 # Copy code
 COPY --chown=nifi:nifi $SRC/java/rtmdemo/target/*.jar ./java/rtmdemo/target/
 COPY --chown=nifi:nifi $SRC/sh/runetl.sh ./sh/
-COPY --chown=nifi:nifi $SRC/nifi/conf/ ./nifi/conf/
+COPY --chown=nifi:nifi $SRC/nifi/ ./nifi/
 COPY --chown=nifi:nifi $SRC/conf/rtmdemo.properties ./conf/
 
 # Append nifi.properties
