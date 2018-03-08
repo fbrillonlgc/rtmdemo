@@ -8,5 +8,5 @@ docker run \
 	--detach \
 	--publish 8080:8080 \
 	--name nifi-rtmdemo \
-	--mount source=lgc-rtmdemo--nifi-vol,destination=/home/nifi/lgc/rtmdemo-nifi/ \
+	--mount source=lgc-rtmdemo-nifi-vol,destination=/home/nifi/lgc/rtmdemo/nifi/ \
 	fbrillon/nifi-rtmdemo
