@@ -1,4 +1,9 @@
 #!/bin/bash
 set -e
-docker build . -t fbrillon/nifi-rtmdemo
-docker push fbrillon/nifi-rtmdemo
+pushd ./java/rtmdemo/
+mvn package
+popd
+DOCKER_USER=`sudo docker info | sed '/Username:/!d;s/.* //'`
+sudo docker build . -t ${DOCKER_USER}/nifi-rtmdemo
+sudo docker push ${DOCKER_USER}/nifi-rtmdemo
+
