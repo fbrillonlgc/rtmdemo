@@ -44,3 +44,6 @@ Note that it will destroy any previous container of the same name. The data gene
 - Reorganize all files under a single Maven project
 - Port build.sh and deploy.sh to Maven (pom.xml)
 
+## Known Issues
+- The field trip_updates.start_time sometimes contains an hour past 24h, i.e. 24h30 for example. This is flagged as an error by PowerBI when importing the data from the Data Lake.
+
