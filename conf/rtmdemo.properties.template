@@ -1,0 +1,32 @@
+#
+# Azure oauth credentials
+# - See https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-protocols-oauth-service-to-service
+#
+oauth.client.id=YOUR_CLIENT_ID_HERE
+oauth.client.secret=YOUR_CLIENT_SECRET_HERE
+oauth.grant.type=client_credentials
+oauth.resource=https://management.core.windows.net/
+oauth.token.url=YOUR_TOKEN_URL_HERE
+
+#
+# Data Lake Store URL
+#
+webhdfs.base.url=https://YOUR_DATA_LAKE_STORE_NAME_HERE.azuredatalakestore.net/webhdfs/v1
+
+#
+# RTM Urls
+# - See https://rtm.quebec/en/about/open-data
+#
+rtm.trip_updates.url=http://opendata.rtm.quebec:2539/ServiceGTFSR/TripUpdate.pb?token=YOUR_TOKEN_HERE
+rtm.vehicle_position.url=http://opendata.rtm.quebec:2539/ServiceGTFSR/VehiclePosition.pb?token=<YOUR_TOKEN_HERE
+
+#
+# Weather Feed (Not impemented yet)
+#
+weather.feed.url=YOUR_WEATHER_FEED_HERE
+
+#
+# Power BI Real-Time Streaming API
+#
+powerbi.vehicle_position.url=YOUR_POWERBI_STEAMING_API_URL
+
